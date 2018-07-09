@@ -22,17 +22,30 @@ attr_accessor :total, :discount
     end
 
   def add_item(item, price, quantity=1)
-    @sale << (item)
+
+    quantity.times do
+        @sale << {item: item, price: price, quantity: quantity}
+          
+    end
+
     @total = @total+(price*quantity)
+
   end
 
   def items
-    return @sale
+#     list_items=[]
+#       while quantity =>1 do
+#         list_items <<
+# binding.pry
+#       end
+    inventory = @sale.map {|i| i[:item]}
 
-      binding.pry
+    return inventory
+
   end
 
   def void_last_transaction
     @sale.pop
+
   end
 end
